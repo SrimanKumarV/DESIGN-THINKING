@@ -3,887 +3,710 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSSS Scholarship Application - Kongu Engineering College</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Smart Certificate Generation System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
             color: #333;
-            line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
+            overflow-x: hidden;
         }
         
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #1a3a6c 0%, #2c5282 100%);
-            color: white;
-            padding: 25px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,138.7C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .college-name {
-            font-size: 2rem;
+        .navbar-brand {
             font-weight: 700;
-            margin-bottom: 8px;
-            position: relative;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            color: var(--primary-color) !important;
         }
         
-        .college-address {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            position: relative;
-        }
-        
-        .college-info {
-            font-size: 0.95rem;
-            font-style: italic;
-            position: relative;
-        }
-        
-        .form-title {
-            background: linear-gradient(135deg, #2c5282 0%, #1a3a6c 100%);
-            color: white;
-            padding: 18px;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-section {
-            padding: 28px;
-            border-bottom: 1px solid #e2e8f0;
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            margin-bottom: 20px;
             transition: all 0.3s ease;
         }
         
-        .form-section:hover {
-            background-color: #f8fafc;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         
-        .section-title {
-            font-size: 1.4rem;
-            color: #1a3a6c;
-            margin-bottom: 22px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #e2e8f0;
-            position: relative;
-            font-weight: 600;
-        }
-        
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #2c5282, #1a3a6c);
-            border-radius: 3px;
-        }
-        
-        .form-group {
-            margin-bottom: 22px;
-        }
-        
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 -12px;
-        }
-        
-        .form-col {
-            flex: 1;
-            padding: 0 12px;
-            min-width: 250px;
-            margin-bottom: 18px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #2d3748;
-            font-size: 1rem;
-        }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1.5px solid #cbd5e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
-            background-color: #fff;
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #4299e1;
-            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
-            transform: translateY(-2px);
-        }
-        
-        .radio-group, .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-            margin-top: 8px;
-        }
-        
-        .radio-item, .checkbox-item {
-            display: flex;
-            align-items: center;
-            background: #f7fafc;
-            padding: 8px 15px;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-        
-        .radio-item:hover, .checkbox-item:hover {
-            background: #edf2f7;
-        }
-        
-        .radio-item input, .checkbox-item input {
-            width: auto;
-            margin-right: 10px;
-        }
-        
-        .required::after {
-            content: " *";
-            color: #e53e3e;
-        }
-        
-        .photo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 15px;
-        }
-        
-        .photo-placeholder {
-            width: 150px;
-            height: 180px;
-            border: 2px dashed #cbd5e0;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #718096;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .photo-placeholder:hover {
-            border-color: #4299e1;
-            color: #4299e1;
-        }
-        
-        .photo-placeholder i {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        
-        .documents-list {
-            margin-left: 20px;
-            margin-top: 15px;
-        }
-        
-        .documents-list li {
-            margin-bottom: 12px;
-            padding-left: 10px;
-        }
-        
-        .declaration {
-            background-color: #fffaf0;
-            border-left: 4px solid #dd6b20;
-            padding: 22px;
-            margin-top: 20px;
-            border-radius: 8px;
-        }
-        
-        .signature-area {
-            margin-top: 40px;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .signature-box {
-            text-align: center;
-            width: 45%;
-        }
-        
-        .signature-line {
-            border-bottom: 1px solid #2d3748;
-            margin: 40px 0 10px;
-        }
-        
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            padding: 25px;
-            background: #f8fafc;
-        }
-        
-        .btn {
-            padding: 14px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-submit {
-            background: linear-gradient(135deg, #2c5282 0%, #1a3a6c 100%);
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), #2980b9);
             color: white;
+            border-radius: 10px 10px 0 0 !important;
+            font-weight: 600;
         }
         
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: all 0.3s ease;
         }
         
-        .btn-reset {
-            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
-            color: #2d3748;
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
-        .btn-reset:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        .dashboard-card {
+            transition: transform 0.3s;
         }
         
-        .note {
-            font-size: 0.9rem;
-            color: #718096;
-            margin-top: 8px;
-            font-style: italic;
+        .dashboard-card:hover {
+            transform: translateY(-5px);
         }
         
-        .success-message {
-            display: none;
-            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
-            color: #22543d;
+        .status-pending {
+            color: var(--warning-color);
+        }
+        
+        .status-approved {
+            color: var(--success-color);
+        }
+        
+        .status-rejected {
+            color: var(--danger-color);
+        }
+        
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
             padding: 30px;
-            border-radius: 8px;
-            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        
+        .stats-card {
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
         
-        .success-message h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
         }
         
-        .success-icon {
-            font-size: 4rem;
+        .stats-label {
+            font-size: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--danger-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sidebar {
+            background: linear-gradient(180deg, var(--secondary-color), #1a252f);
+            color: white;
+            min-height: calc(100vh - 56px);
+            padding: 0;
+        }
+        
+        .sidebar .nav-link {
+            color: #bdc3c7;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding-left: 30px;
+        }
+        
+        .sidebar .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
             margin-bottom: 20px;
-            color: #38a169;
         }
         
-        @media (max-width: 768px) {
-            .form-col {
-                flex: 100%;
-            }
-            
-            .signature-area {
-                flex-direction: column;
-            }
-            
-            .signature-box {
-                width: 100%;
-                margin-bottom: 30px;
-            }
-            
-            .college-name {
-                font-size: 1.6rem;
-            }
-            
-            .form-title {
-                font-size: 1.3rem;
-            }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
         }
         
-        .highlight {
-            background: linear-gradient(120deg, #f0fff4 0%, #e6fffa 100%);
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border-left: 4px solid #38a169;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .form-instruction {
-            background: #ebf8ff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid #4299e1;
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .login-btn, .admin-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn:hover, .admin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .system-links {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .admin-only {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="college-name">KONGU ENGINEERING COLLEGE</div>
-            <div class="college-address">THOPPUPALAYAM, PERUNDURAI (TKI), ERODE - 638 060</div>
-            <div class="college-info">(Autonomous) (Approved by AICTE, New Delhi and Affiliated to Anna University, Chennai)</div>
-        </header>
-        
-        <div class="form-title">CENTRAL SECTOR SCHEME OF SCHOLARSHIP (CSSS) - FRESH 2025-2026</div>
-        
-        <div class="form-instruction">
-            <strong>Instructions:</strong> Please fill all details in CAPITAL LETTERS. All fields marked with * are mandatory.
-        </div>
-        
-        <div class="success-message" id="successMessage">
-            <div class="success-icon">✓</div>
-            <h2>Application Submitted Successfully!</h2>
-            <p>Your CSSS Scholarship application has been submitted successfully. Please note your application reference number: <strong>CSSS2025-<span id="refNumber"></span></strong></p>
-            <p>Print this form and submit it with required documents to the scholarship cell.</p>
-            <button class="btn btn-submit" onclick="window.print()" style="margin-top: 15px;">Print Application</button>
-        </div>
-        
-        <form id="scholarshipForm">
-            <!-- Scholarship Type Section -->
-            <div class="form-section">
-                <h2 class="section-title">Scholarship Information</h2>
-                
-                <div class="highlight">
-                    <strong>Scholarship:</strong> Central Sector Scheme of Scholarship (CSSS)
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">Course</label>
-                        <input type="text" placeholder="Enter your course" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Year</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="year1" name="year" value="I" required>
-                                <label for="year1">I</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="year2" name="year" value="II">
-                                <label for="year2">II</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="year3" name="year" value="III">
-                                <label for="year3">III</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="year4" name="year" value="IV">
-                                <label for="year4">IV</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">Student Roll No</label>
-                        <input type="text" placeholder="Enter roll number" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Quota</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="govt" name="quota" value="govt" required>
-                                <label for="govt">Govt.</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="mgt" name="quota" value="mgt">
-                                <label for="mgt">Mgt.</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="required">Affix a passport size photograph</label>
-                    <div class="photo-container">
-                        <div class="photo-placeholder">
-                            <div>📷</div>
-                            <div>Click to upload photo</div>
-                            <input type="file" accept="image/*" style="display: none;" id="photoUpload">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Personal Details Section -->
-            <div class="form-section">
-                <h2 class="section-title">Personal Details</h2>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">Name of the Student</label>
-                        <input type="text" placeholder="Enter full name in CAPITAL LETTERS" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Father's Name</label>
-                        <input type="text" placeholder="Enter father's name" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">Father's Occupation</label>
-                        <input type="text" placeholder="Enter occupation" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Mother's Name</label>
-                        <input type="text" placeholder="Enter mother's name" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">Mother's Occupation</label>
-                        <input type="text" placeholder="Enter occupation" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Gender</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="male" name="gender" value="male" required>
-                                <label for="male">Male</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="female" name="gender" value="female">
-                                <label for="female">Female</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">Religion</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="hindu" name="religion" value="hindu" required>
-                                <label for="hindu">Hindu</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="muslim" name="religion" value="muslim">
-                                <label for="muslim">Muslim</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="christian" name="religion" value="christian">
-                                <label for="christian">Christian</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Date of Birth</label>
-                        <input type="date" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">Community</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="oc" name="community" value="oc" required>
-                                <label for="oc">OC</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="bc" name="community" value="bc">
-                                <label for="bc">BC</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="mbc" name="community" value="mbc">
-                                <label for="mbc">MBC</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="dnc" name="community" value="dnc">
-                                <label for="dnc">DNC</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="sc" name="community" value="sc">
-                                <label for="sc">SC</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="st" name="community" value="st">
-                                <label for="st">ST</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Caste</label>
-                        <input type="text" placeholder="Enter caste" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">Annual Family Income</label>
-                        <input type="text" placeholder="Enter annual income" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Income Certificate Date</label>
-                        <input type="date" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">First Graduate in Family</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="firstGraduateYes" name="firstGraduate" value="yes" required>
-                                <label for="firstGraduateYes">Yes</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="firstGraduateNo" name="firstGraduate" value="no">
-                                <label for="firstGraduateNo">No</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Aadhar No.</label>
-                        <input type="text" placeholder="Enter Aadhar number" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">E-Mail ID</label>
-                        <input type="email" placeholder="Enter email address" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Mobile No.</label>
-                        <input type="tel" placeholder="Enter mobile number" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">10th Reg. No.</label>
-                        <input type="text" placeholder="Enter 10th registration number" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">12th Reg. No.</label>
-                        <input type="text" placeholder="Enter 12th registration number" required>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Address Section -->
-            <div class="form-section">
-                <h2 class="section-title">Address Details</h2>
-                
-                <div class="form-group">
-                    <label class="required">Address for Correspondence</label>
-                    <textarea rows="3" placeholder="Enter correspondence address" required></textarea>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">District</label>
-                        <input type="text" placeholder="Enter district" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Taluk</label>
-                        <input type="text" placeholder="Enter taluk" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Pincode</label>
-                        <input type="text" placeholder="Enter pincode" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="required">Permanent Address</label>
-                    <textarea rows="3" placeholder="Enter permanent address" required></textarea>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">District</label>
-                        <input type="text" placeholder="Enter district" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Taluk</label>
-                        <input type="text" placeholder="Enter taluk" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Pincode</label>
-                        <input type="text" placeholder="Enter pincode" required>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bank Details Section -->
-            <div class="form-section">
-                <h2 class="section-title">Bank Details</h2>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">Aadhaar Seeding Bank Name</label>
-                        <input type="text" placeholder="Enter bank name" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">Aadhaar Seeding S.B. A/c No.</label>
-                        <input type="text" placeholder="Enter account number" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">IFSC Code No.</label>
-                        <input type="text" placeholder="Enter IFSC code" required>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label class="required">MICR Code No.</label>
-                        <input type="text" placeholder="Enter MICR code" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <label class="required">Branch Name</label>
-                        <input type="text" placeholder="Enter branch name" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="required">Student Signature</label>
-                    <div class="signature-line"></div>
-                    <p class="note">(To be signed in presence of college authority)</p>
-                </div>
-            </div>
-            
-            <!-- Hostel Details Section -->
-            <div class="form-section">
-                <h2 class="section-title">Hostel Details</h2>
-                
-                <div class="form-group">
-                    <label class="required">Hosteller</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="hostellerYes" name="hosteller" value="yes" required>
-                            <label for="hostellerYes">Yes</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="hostellerNo" name="hosteller" value="no">
-                            <label for="hostellerNo">No</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-row" id="hostelDetails" style="display: none;">
-                    <div class="form-col">
-                        <label>Hostel Type</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="boys" name="hostelType" value="boys">
-                                <label for="boys">Boys</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="girls" name="hostelType" value="girls">
-                                <label for="girls">Girls</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-col">
-                        <label>Hostel Name</label>
-                        <input type="text" placeholder="Enter hostel name">
-                    </div>
-                </div>
-                
-                <div class="form-row" id="hostelDetails2" style="display: none;">
-                    <div class="form-col">
-                        <label>Room No.</label>
-                        <input type="text" placeholder="Enter room number">
-                    </div>
-                    
-                    <div class="form-col">
-                        <label>Date of Joining (For the Current Academic Year)</label>
-                        <input type="date">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="required">Dy. Warden Signature With Seal</label>
-                    <div class="signature-line"></div>
-                </div>
-            </div>
-            
-            <!-- Documents Section -->
-            <div class="form-section">
-                <h2 class="section-title">Required Documents</h2>
-                <p>The following documents must be submitted along with the application:</p>
-                
-                <ol class="documents-list">
-                    <li>Income Certificate - Original + Photo copy (1 Copy)
-                        <div class="note">(Income Certificate obtained from the Tahsildhar on or after 01.04.2025)</div>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="DT.html">
+                <i class="fas fa-certificate me-2"></i>CertGenius
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home"><i class="fas fa-home me-1"></i>Home</a>
                     </li>
-                    <li>Community Certificate - Photo copy (1 Copy)</li>
-                    <li>Attendance Certificate (Above 75%) - from the School last studied Institution (1 Copy)</li>
-                    <li>10th, 11th & 12th Mark Sheets - Photo copy (1 Copy)</li>
-                    <li>Consolidated Mark Sheet - Photo copy (1 Copy) - PG Students Only</li>
-                    <li>Allotment Order - Photo copy (1 Copy) - Government Quota Students Only</li>
-                    <li>Nativity Certificate - Photo copy (1 Copy)</li>
-                    <li>Aadhar seeding S.B. A/c Pass Book (or) E-Statement - Photo copy (1 Copy)</li>
-                    <li>E-Aadhar Card - Photo copy (1 Copy)</li>
-                    <li>Current Year (2024-25) College Fee Receipt (1 Copy)</li>
-                    <li>Passport Size Photo - 2 Nos.</li>
-                    <li>Bank seeding Status With Aadhaar (1 Copy)</li>
-                </ol>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about"><i class="fas fa-info-circle me-1"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features"><i class="fas fa-star me-1"></i>Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>Access System
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="student_login.html"><i class="fas fa-user-graduate me-2"></i>Student Login</a></li>
+                            <li><a class="dropdown-item" href="admin_login.html"><i class="fas fa-user-shield me-2"></i>Admin Login</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="student_home.php"><i class="fas fa-tachometer-alt me-2"></i>Student Dashboard</a></li>
+                            <li><a class="dropdown-item" href="admin_dashboard.php"><i class="fas fa-cogs me-2"></i>Admin Dashboard</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            
-            <!-- Declaration Section -->
-            <div class="form-section">
-                <h2 class="section-title">Declaration</h2>
-                
-                <div class="declaration">
-                    <p>I hereby declare that the information provided in this application is true and correct to the best of my knowledge. I understand that any false information may lead to cancellation of my scholarship.</p>
-                    
-                    <div class="signature-area">
-                        <div class="signature-box">
-                            <div class="signature-line"></div>
-                            <p>Signature of Student</p>
-                        </div>
-                        
-                        <div class="signature-box">
-                            <div class="signature-line"></div>
-                            <p>Signature of Parent/Guardian</p>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section gradient-bg" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 fade-in">
+                    <h1 class="display-4 fw-bold mb-4">Smart Certificate Generation System</h1>
+                    <p class="lead mb-4">Streamline your certificate requests and approvals with our automated platform. Fast, secure, and efficient.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="student_login.html" class="btn btn-light btn-lg login-btn pulse">
+                            <i class="fas fa-user-graduate me-2"></i>Student Portal
+                        </a>
+                        <a href="admin_login.html" class="btn btn-outline-light btn-lg admin-btn">
+                            <i class="fas fa-user-shield me-2"></i>Admin Portal
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center floating">
+                    <i class="fas fa-certificate display-1 text-white opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick System Access -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold">Quick System Access</h2>
+                    <p class="lead">Direct links to all system components</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="system-links">
+                        <h3 class="mb-4"><i class="fas fa-user-graduate me-2"></i>Student Section</h3>
+                        <div class="d-grid gap-2">
+                            <a href="student_login.html" class="btn btn-outline-light btn-lg mb-2">
+                                <i class="fas fa-sign-in-alt me-2"></i>Student Login
+                            </a>
+                            <a href="student_home.php" class="btn btn-outline-light btn-lg mb-2">
+                                <i class="fas fa-tachometer-alt me-2"></i>Student Dashboard
+                            </a>
+                            <a href="student_requests.php" class="btn btn-outline-light btn-lg mb-2">
+                                <i class="fas fa-history me-2"></i>My Requests
+                            </a>
                         </div>
                     </div>
-                    
-                    <div class="form-row" style="margin-top: 20px;">
-                        <div class="form-col">
-                            <label>Date</label>
-                            <input type="date">
-                        </div>
-                        
-                        <div class="form-col">
-                            <label>Place</label>
-                            <input type="text" placeholder="Enter place">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="system-links">
+                        <h3 class="mb-4"><i class="fas fa-user-shield me-2"></i>Admin Section</h3>
+                        <div class="d-grid gap-2">
+                            <a href="admin_login.html" class="btn btn-outline-light btn-lg mb-2">
+                                <i class="fas fa-sign-in-alt me-2"></i>Admin Login
+                            </a>
+                            <a href="admin_dashboard.php" class="btn btn-outline-light btn-lg mb-2">
+                                <i class="fas fa-cogs me-2"></i>Admin Dashboard
+                            </a>
+                            <a href="create_admin.php" class="btn btn-outline-light btn-lg mb-2">
+                                <i class="fas fa-user-plus me-2"></i>Create Admin (First Time)
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Form Buttons -->
-            <div class="btn-container">
-                <button type="reset" class="btn btn-reset">Reset Form</button>
-                <button type="submit" class="btn btn-submit">Submit Application</button>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h4 class="mb-0"><i class="fas fa-cogs me-2"></i>System Components</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-md-3 mb-3">
+                                    <a href="db_config.php" class="btn btn-outline-primary w-100">
+                                        <i class="fas fa-database me-2"></i>Database Config
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <a href="logout.php" class="btn btn-outline-secondary w-100">
+                                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <a href="approve_request.php" class="btn btn-outline-success w-100">
+                                        <i class="fas fa-check me-2"></i>Approve Requests
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <a href="reject_request.php" class="btn btn-outline-danger w-100">
+                                        <i class="fas fa-times me-2"></i>Reject Requests
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <a href="create_admin.php" class="btn btn-outline-info w-100">
+                                        <i class="fas fa-user-shield me-2"></i>Create Admin
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </section>
 
+    <!-- About Section -->
+    <section class="py-5 bg-light" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-4">About CertGenius</h2>
+                    <p class="lead">CertGenius is a comprehensive certificate management system designed for educational institutions to streamline the process of certificate requests, approvals, and delivery.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>Fast Processing</h4>
+                        <p>Reduce certificate processing time from days to minutes with our automated workflow.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Secure & Reliable</h4>
+                        <p>Your data is protected with industry-standard security measures and encryption.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Track & Monitor</h4>
+                        <p>Real-time tracking of your certificate requests with status updates at every stage.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-4">System Features</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-user-graduate me-2"></i>Student Features</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Easy certificate request submission</li>
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Track request status in real-time</li>
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Digital certificate delivery</li>
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Request history and management</li>
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Multiple certificate types supported</li>
+                            </ul>
+                            <div class="mt-3 text-center">
+                                <a href="student_login.html" class="btn btn-primary me-2">Student Login</a>
+                                <a href="student_home.php" class="btn btn-outline-primary">Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-user-shield me-2"></i>Admin Features</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Dashboard with request overview</li>
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Approve or reject certificate requests</li>
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Manage student accounts</li>
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Create new student accounts</li>
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>Generate reports and analytics</li>
+                                <li class="list-group-item"><i class="fas fa-check text-success me-2"></i>System configuration and settings</li>
+                            </ul>
+                            <div class="mt-3 text-center">
+                                <a href="admin_login.html" class="btn btn-primary me-2">Admin Login</a>
+                                <a href="admin_dashboard.php" class="btn btn-outline-primary">Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- File Structure Info -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold">System File Structure</h2>
+                    <p class="lead">All connected files in your CertGenius system</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-file-code me-2"></i>Core System Files</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-database me-2 text-info"></i>
+                                    <strong>db_config.php</strong> - Database configuration
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-file me-2 text-info"></i>
+                                    <strong>init_db.sql</strong> - Database initialization
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-css3 me-2 text-info"></i>
+                                    <strong>style.css</strong> - Main stylesheet
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-code me-2 text-info"></i>
+                                    <strong>js_app.js</strong> - JavaScript functionality
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-cogs me-2"></i>Functional Files</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-sign-in-alt me-2 text-success"></i>
+                                    <strong>student_login.php/html</strong> - Student authentication
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-sign-in-alt me-2 text-success"></i>
+                                    <strong>admin_login.php/html</strong> - Admin authentication
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-home me-2 text-primary"></i>
+                                    <strong>student_home.php</strong> - Student dashboard
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-tachometer-alt me-2 text-primary"></i>
+                                    <strong>admin_dashboard.php</strong> - Admin dashboard
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-history me-2 text-warning"></i>
+                                    <strong>student_requests.php</strong> - Request history
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-user-plus me-2 text-warning"></i>
+                                    <strong>create_student.php/html</strong> - Create student accounts
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check me-2 text-success"></i>
+                                    <strong>approve_request.php</strong> - Approve certificates
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-times me-2 text-danger"></i>
+                                    <strong>reject_request.php</strong> - Reject certificates
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-sign-out-alt me-2 text-secondary"></i>
+                                    <strong>logout.php</strong> - System logout
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-4">Contact Us</h2>
+                    <p class="lead">Have questions or need support? Get in touch with our team.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card">
+                        <div class="card-header">Send us a Message</div>
+                        <div class="card-body">
+                            <form id="contactForm">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Your Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>CertGenius</h5>
+                    <p>A smart certificate generation and student service automation system for educational institutions.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-white">Home</a></li>
+                        <li><a href="#about" class="text-white">About Us</a></li>
+                        <li><a href="#features" class="text-white">Features</a></li>
+                        <li><a href="#contact" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>System Access</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="student_login.html" class="text-white"><i class="fas fa-user-graduate me-2"></i>Student Login</a></li>
+                        <li><a href="admin_login.html" class="text-white"><i class="fas fa-user-shield me-2"></i>Admin Login</a></li>
+                        <li><a href="student_home.php" class="text-white"><i class="fas fa-tachometer-alt me-2"></i>Student Dashboard</a></li>
+                        <li><a href="admin_dashboard.php" class="text-white"><i class="fas fa-cogs me-2"></i>Admin Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2023 CertGenius. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('scholarshipForm').addEventListener('submit', function(e) {
+        // Simple form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Generate a random reference number
-            const refNumber = Math.floor(100000 + Math.random() * 900000);
-            document.getElementById('refNumber').textContent = refNumber;
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
             
-            // Show success message and hide form
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('scholarshipForm').style.display = 'none';
+            // In a real application, you would send this data to the server
+            // For now, we'll just show an alert
+            alert(`Thank you for your message, ${name}! We'll get back to you soon.`);
             
-            // In a real application, you would send the form data to a server here
+            // Reset form
+            this.reset();
         });
-        
-        // Show/hide hostel details based on selection
-        const hostellerYes = document.getElementById('hostellerYes');
-        const hostellerNo = document.getElementById('hostellerNo');
-        const hostelDetails = document.getElementById('hostelDetails');
-        const hostelDetails2 = document.getElementById('hostelDetails2');
-        
-        hostellerYes.addEventListener('change', function() {
-            if (this.checked) {
-                hostelDetails.style.display = 'flex';
-                hostelDetails2.style.display = 'flex';
-            }
-        });
-        
-        hostellerNo.addEventListener('change', function() {
-            if (this.checked) {
-                hostelDetails.style.display = 'none';
-                hostelDetails2.style.display = 'none';
-            }
-        });
-        
-        // Photo upload functionality
-        const photoPlaceholder = document.querySelector('.photo-placeholder');
-        const photoUpload = document.getElementById('photoUpload');
-        
-        photoPlaceholder.addEventListener('click', function() {
-            photoUpload.click();
-        });
-        
-        photoUpload.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
                 
-                reader.onload = function(e) {
-                    photoPlaceholder.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">`;
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
                 }
-                
-                reader.readAsDataURL(this.files[0]);
+            });
+        });
+
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Notification badge for demo
+        document.addEventListener('DOMContentLoaded', function() {
+            const userDropdown = document.getElementById('userDropdown');
+            if (userDropdown) {
+                const badge = document.createElement('span');
+                badge.className = 'notification-badge';
+                badge.textContent = '2';
+                userDropdown.appendChild(badge);
             }
         });
     </script>
