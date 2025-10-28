@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSSS Scholarship Application - Kongu Engineering College</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a3a6c 0%, #2c5282 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,138.7C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .college-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .college-address {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .college-info {
+            font-size: 0.95rem;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .form-title {
+            background: linear-gradient(135deg, #2c5282 0%, #1a3a6c 100%);
+            color: white;
+            padding: 18px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-section {
+            padding: 28px;
+            border-bottom: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .form-section:hover {
+            background-color: #f8fafc;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #1a3a6c;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            position: relative;
+            font-weight: 600;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #2c5282, #1a3a6c);
+            border-radius: 3px;
+        }
+        
+        .form-group {
+            margin-bottom: 22px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -12px;
+        }
+        
+        .form-col {
+            flex: 1;
+            padding: 0 12px;
+            min-width: 250px;
+            margin-bottom: 18px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 1rem;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1.5px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: #fff;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 8px;
+        }
+        
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            background: #f7fafc;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .radio-item:hover, .checkbox-item:hover {
+            background: #edf2f7;
+        }
+        
+        .radio-item input, .checkbox-item input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .required::after {
+            content: " *";
+            color: #e53e3e;
+        }
+        
+        .photo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .photo-placeholder {
+            width: 150px;
+            height: 180px;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #718096;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .photo-placeholder:hover {
+            border-color: #4299e1;
+            color: #4299e1;
+        }
+        
+        .photo-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .documents-list {
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+        
+        .documents-list li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+        }
+        
+        .declaration {
+            background-color: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            padding: 22px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        
+        .signature-area {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .signature-box {
+            text-align: center;
+            width: 45%;
+        }
+        
+        .signature-line {
+            border-bottom: 1px solid #2d3748;
+            margin: 40px 0 10px;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #2c5282 0%, #1a3a6c 100%);
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-reset {
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+            color: #2d3748;
+        }
+        
+        .btn-reset:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .note {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            color: #22543d;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .success-message h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #38a169;
+        }
+        
+        @media (max-width: 768px) {
+            .form-col {
+                flex: 100%;
+            }
+            
+            .signature-area {
+                flex-direction: column;
+            }
+            
+            .signature-box {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .college-name {
+                font-size: 1.6rem;
+            }
+            
+            .form-title {
+                font-size: 1.3rem;
+            }
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f0fff4 0%, #e6fffa 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #38a169;
+        }
+        
+        .form-instruction {
+            background: #ebf8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4299e1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="college-name">KONGU ENGINEERING COLLEGE</div>
+            <div class="college-address">THOPPUPALAYAM, PERUNDURAI (TKI), ERODE - 638 060</div>
+            <div class="college-info">(Autonomous) (Approved by AICTE, New Delhi and Affiliated to Anna University, Chennai)</div>
+        </header>
+        
+        <div class="form-title">CENTRAL SECTOR SCHEME OF SCHOLARSHIP (CSSS) - FRESH 2025-2026</div>
+        
+        <div class="form-instruction">
+            <strong>Instructions:</strong> Please fill all details in CAPITAL LETTERS. All fields marked with * are mandatory.
+        </div>
+        
+        <div class="success-message" id="successMessage">
+            <div class="success-icon">✓</div>
+            <h2>Application Submitted Successfully!</h2>
+            <p>Your CSSS Scholarship application has been submitted successfully. Please note your application reference number: <strong>CSSS2025-<span id="refNumber"></span></strong></p>
+            <p>Print this form and submit it with required documents to the scholarship cell.</p>
+            <button class="btn btn-submit" onclick="window.print()" style="margin-top: 15px;">Print Application</button>
+        </div>
+        
+        <form id="scholarshipForm">
+            <!-- Scholarship Type Section -->
+            <div class="form-section">
+                <h2 class="section-title">Scholarship Information</h2>
+                
+                <div class="highlight">
+                    <strong>Scholarship:</strong> Central Sector Scheme of Scholarship (CSSS)
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Course</label>
+                        <input type="text" placeholder="Enter your course" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Year</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="year1" name="year" value="I" required>
+                                <label for="year1">I</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="year2" name="year" value="II">
+                                <label for="year2">II</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="year3" name="year" value="III">
+                                <label for="year3">III</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="year4" name="year" value="IV">
+                                <label for="year4">IV</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Student Roll No</label>
+                        <input type="text" placeholder="Enter roll number" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Quota</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="govt" name="quota" value="govt" required>
+                                <label for="govt">Govt.</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="mgt" name="quota" value="mgt">
+                                <label for="mgt">Mgt.</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Affix a passport size photograph</label>
+                    <div class="photo-container">
+                        <div class="photo-placeholder">
+                            <div>📷</div>
+                            <div>Click to upload photo</div>
+                            <input type="file" accept="image/*" style="display: none;" id="photoUpload">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Personal Details Section -->
+            <div class="form-section">
+                <h2 class="section-title">Personal Details</h2>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Name of the Student</label>
+                        <input type="text" placeholder="Enter full name in CAPITAL LETTERS" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Father's Name</label>
+                        <input type="text" placeholder="Enter father's name" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Father's Occupation</label>
+                        <input type="text" placeholder="Enter occupation" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Mother's Name</label>
+                        <input type="text" placeholder="Enter mother's name" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Mother's Occupation</label>
+                        <input type="text" placeholder="Enter occupation" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Gender</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="male" name="gender" value="male" required>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Religion</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="hindu" name="religion" value="hindu" required>
+                                <label for="hindu">Hindu</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="muslim" name="religion" value="muslim">
+                                <label for="muslim">Muslim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="christian" name="religion" value="christian">
+                                <label for="christian">Christian</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Date of Birth</label>
+                        <input type="date" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Community</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="oc" name="community" value="oc" required>
+                                <label for="oc">OC</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="bc" name="community" value="bc">
+                                <label for="bc">BC</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="mbc" name="community" value="mbc">
+                                <label for="mbc">MBC</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="dnc" name="community" value="dnc">
+                                <label for="dnc">DNC</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="sc" name="community" value="sc">
+                                <label for="sc">SC</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="st" name="community" value="st">
+                                <label for="st">ST</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Caste</label>
+                        <input type="text" placeholder="Enter caste" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Annual Family Income</label>
+                        <input type="text" placeholder="Enter annual income" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Income Certificate Date</label>
+                        <input type="date" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">First Graduate in Family</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="firstGraduateYes" name="firstGraduate" value="yes" required>
+                                <label for="firstGraduateYes">Yes</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="firstGraduateNo" name="firstGraduate" value="no">
+                                <label for="firstGraduateNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Aadhar No.</label>
+                        <input type="text" placeholder="Enter Aadhar number" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">E-Mail ID</label>
+                        <input type="email" placeholder="Enter email address" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Mobile No.</label>
+                        <input type="tel" placeholder="Enter mobile number" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">10th Reg. No.</label>
+                        <input type="text" placeholder="Enter 10th registration number" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">12th Reg. No.</label>
+                        <input type="text" placeholder="Enter 12th registration number" required>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Address Section -->
+            <div class="form-section">
+                <h2 class="section-title">Address Details</h2>
+                
+                <div class="form-group">
+                    <label class="required">Address for Correspondence</label>
+                    <textarea rows="3" placeholder="Enter correspondence address" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">District</label>
+                        <input type="text" placeholder="Enter district" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Taluk</label>
+                        <input type="text" placeholder="Enter taluk" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Pincode</label>
+                        <input type="text" placeholder="Enter pincode" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Permanent Address</label>
+                    <textarea rows="3" placeholder="Enter permanent address" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">District</label>
+                        <input type="text" placeholder="Enter district" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Taluk</label>
+                        <input type="text" placeholder="Enter taluk" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Pincode</label>
+                        <input type="text" placeholder="Enter pincode" required>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bank Details Section -->
+            <div class="form-section">
+                <h2 class="section-title">Bank Details</h2>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Aadhaar Seeding Bank Name</label>
+                        <input type="text" placeholder="Enter bank name" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Aadhaar Seeding S.B. A/c No.</label>
+                        <input type="text" placeholder="Enter account number" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">IFSC Code No.</label>
+                        <input type="text" placeholder="Enter IFSC code" required>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">MICR Code No.</label>
+                        <input type="text" placeholder="Enter MICR code" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Branch Name</label>
+                        <input type="text" placeholder="Enter branch name" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Student Signature</label>
+                    <div class="signature-line"></div>
+                    <p class="note">(To be signed in presence of college authority)</p>
+                </div>
+            </div>
+            
+            <!-- Hostel Details Section -->
+            <div class="form-section">
+                <h2 class="section-title">Hostel Details</h2>
+                
+                <div class="form-group">
+                    <label class="required">Hosteller</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="hostellerYes" name="hosteller" value="yes" required>
+                            <label for="hostellerYes">Yes</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="hostellerNo" name="hosteller" value="no">
+                            <label for="hostellerNo">No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row" id="hostelDetails" style="display: none;">
+                    <div class="form-col">
+                        <label>Hostel Type</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="boys" name="hostelType" value="boys">
+                                <label for="boys">Boys</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="girls" name="hostelType" value="girls">
+                                <label for="girls">Girls</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label>Hostel Name</label>
+                        <input type="text" placeholder="Enter hostel name">
+                    </div>
+                </div>
+                
+                <div class="form-row" id="hostelDetails2" style="display: none;">
+                    <div class="form-col">
+                        <label>Room No.</label>
+                        <input type="text" placeholder="Enter room number">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label>Date of Joining (For the Current Academic Year)</label>
+                        <input type="date">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Dy. Warden Signature With Seal</label>
+                    <div class="signature-line"></div>
+                </div>
+            </div>
+            
+            <!-- Documents Section -->
+            <div class="form-section">
+                <h2 class="section-title">Required Documents</h2>
+                <p>The following documents must be submitted along with the application:</p>
+                
+                <ol class="documents-list">
+                    <li>Income Certificate - Original + Photo copy (1 Copy)
+                        <div class="note">(Income Certificate obtained from the Tahsildhar on or after 01.04.2025)</div>
+                    </li>
+                    <li>Community Certificate - Photo copy (1 Copy)</li>
+                    <li>Attendance Certificate (Above 75%) - from the School last studied Institution (1 Copy)</li>
+                    <li>10th, 11th & 12th Mark Sheets - Photo copy (1 Copy)</li>
+                    <li>Consolidated Mark Sheet - Photo copy (1 Copy) - PG Students Only</li>
+                    <li>Allotment Order - Photo copy (1 Copy) - Government Quota Students Only</li>
+                    <li>Nativity Certificate - Photo copy (1 Copy)</li>
+                    <li>Aadhar seeding S.B. A/c Pass Book (or) E-Statement - Photo copy (1 Copy)</li>
+                    <li>E-Aadhar Card - Photo copy (1 Copy)</li>
+                    <li>Current Year (2024-25) College Fee Receipt (1 Copy)</li>
+                    <li>Passport Size Photo - 2 Nos.</li>
+                    <li>Bank seeding Status With Aadhaar (1 Copy)</li>
+                </ol>
+            </div>
+            
+            <!-- Declaration Section -->
+            <div class="form-section">
+                <h2 class="section-title">Declaration</h2>
+                
+                <div class="declaration">
+                    <p>I hereby declare that the information provided in this application is true and correct to the best of my knowledge. I understand that any false information may lead to cancellation of my scholarship.</p>
+                    
+                    <div class="signature-area">
+                        <div class="signature-box">
+                            <div class="signature-line"></div>
+                            <p>Signature of Student</p>
+                        </div>
+                        
+                        <div class="signature-box">
+                            <div class="signature-line"></div>
+                            <p>Signature of Parent/Guardian</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row" style="margin-top: 20px;">
+                        <div class="form-col">
+                            <label>Date</label>
+                            <input type="date">
+                        </div>
+                        
+                        <div class="form-col">
+                            <label>Place</label>
+                            <input type="text" placeholder="Enter place">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Form Buttons -->
+            <div class="btn-container">
+                <button type="reset" class="btn btn-reset">Reset Form</button>
+                <button type="submit" class="btn btn-submit">Submit Application</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('scholarshipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Generate a random reference number
+            const refNumber = Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('refNumber').textContent = refNumber;
+            
+            // Show success message and hide form
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('scholarshipForm').style.display = 'none';
+            
+            // In a real application, you would send the form data to a server here
+        });
+        
+        // Show/hide hostel details based on selection
+        const hostellerYes = document.getElementById('hostellerYes');
+        const hostellerNo = document.getElementById('hostellerNo');
+        const hostelDetails = document.getElementById('hostelDetails');
+        const hostelDetails2 = document.getElementById('hostelDetails2');
+        
+        hostellerYes.addEventListener('change', function() {
+            if (this.checked) {
+                hostelDetails.style.display = 'flex';
+                hostelDetails2.style.display = 'flex';
+            }
+        });
+        
+        hostellerNo.addEventListener('change', function() {
+            if (this.checked) {
+                hostelDetails.style.display = 'none';
+                hostelDetails2.style.display = 'none';
+            }
+        });
+        
+        // Photo upload functionality
+        const photoPlaceholder = document.querySelector('.photo-placeholder');
+        const photoUpload = document.getElementById('photoUpload');
+        
+        photoPlaceholder.addEventListener('click', function() {
+            photoUpload.click();
+        });
+        
+        photoUpload.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    photoPlaceholder.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">`;
+                }
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    </script>
+</body>
+</html>

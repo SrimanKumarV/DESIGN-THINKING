@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICTE-PRAGATHI Scholarship Application - Kongu Engineering College</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #1a3a6c;
+            color: white;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .college-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .college-address {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .college-info {
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        .form-title {
+            background-color: #2c5282;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .form-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            color: #1a3a6c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .form-col {
+            flex: 1;
+            padding: 0 10px;
+            min-width: 250px;
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-item input {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        .required::after {
+            content: " *";
+            color: #e53e3e;
+        }
+        
+        .documents-list {
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+        
+        .documents-list li {
+            margin-bottom: 10px;
+        }
+        
+        .declaration {
+            background-color: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .signature-area {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .signature-box {
+            text-align: center;
+            width: 45%;
+        }
+        
+        .signature-line {
+            border-bottom: 1px solid #2d3748;
+            margin: 40px 0 10px;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-submit {
+            background-color: #2c5282;
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background-color: #1a3a6c;
+        }
+        
+        .btn-reset {
+            background-color: #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .btn-reset:hover {
+            background-color: #cbd5e0;
+        }
+        
+        .note {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-col {
+                flex: 100%;
+            }
+            
+            .signature-area {
+                flex-direction: column;
+            }
+            
+            .signature-box {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="college-name">KONGU ENGINEERING COLLEGE</div>
+            <div class="college-address">THOPPUPALAYAM, PERUNDURAI (TK), ERODE - 638 060</div>
+            <div class="college-info">(Autonomous) (Approved by AICTE, New Delhi and Affiliated to Anna University, Chennai)</div>
+        </header>
+        
+        <div class="form-title">DATA SHEET FOR SCHOLARSHIP SCHEME</div>
+        
+        <form id="scholarshipForm">
+            <!-- Scholarship Type Section -->
+            <div class="form-section">
+                <h2 class="section-title">Scholarship Information</h2>
+                
+                <div class="form-group">
+                    <label class="required">Application Type</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="fresh" name="applicationType">
+                            <label for="fresh">FRESH 2025-2026</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="renewal" name="applicationType">
+                            <label for="renewal">RENEWAL 2025-2026</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Scholarship</label>
+                        <input type="text" value="AICTE - PRAGATHI SCHOLARSHIP SCHEME" readonly>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Course</label>
+                        <input type="text" placeholder="Enter your course">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Year</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="year1" name="year">
+                                <label for="year1">I</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="year2" name="year">
+                                <label for="year2">II</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="year3" name="year">
+                                <label for="year3">III</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="year4" name="year">
+                                <label for="year4">IV</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Student Roll No</label>
+                        <input type="text" placeholder="Enter roll number">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Quota</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="govt" name="quota">
+                            <label for="govt">Govt.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mgt" name="quota">
+                            <label for="mgt">Mgt.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Personal Details Section -->
+            <div class="form-section">
+                <h2 class="section-title">Personal Details</h2>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Name of the Student</label>
+                        <input type="text" placeholder="Enter full name">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Father's Name</label>
+                        <input type="text" placeholder="Enter father's name">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Father's Occupation</label>
+                        <input type="text" placeholder="Enter occupation">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Mother's Name</label>
+                        <input type="text" placeholder="Enter mother's name">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Mother's Occupation</label>
+                        <input type="text" placeholder="Enter occupation">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Gender</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="male" name="gender">
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="female" name="gender">
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Religion</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="hindu" name="religion">
+                                <label for="hindu">Hindu</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="muslim" name="religion">
+                                <label for="muslim">Muslim</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="christian" name="religion">
+                                <label for="christian">Christian</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Date of Birth</label>
+                        <input type="date" placeholder="DD/MM/YYYY">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Community</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="oc" name="community">
+                                <label for="oc">OC</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="bc" name="community">
+                                <label for="bc">BC</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mbc" name="community">
+                                <label for="mbc">MBC</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="dnc" name="community">
+                                <label for="dnc">DNC</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="sc" name="community">
+                                <label for="sc">SC</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="st" name="community">
+                                <label for="st">ST</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Caste</label>
+                        <input type="text" placeholder="Enter caste">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Annual Family Income</label>
+                        <input type="text" placeholder="Enter annual income">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Income Certificate Date</label>
+                        <input type="date">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">First Graduate in Family</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="firstGraduateYes" name="firstGraduate">
+                                <label for="firstGraduateYes">Yes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="firstGraduateNo" name="firstGraduate">
+                                <label for="firstGraduateNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">E-Mail ID</label>
+                        <input type="email" placeholder="Enter email address">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Mobile No.</label>
+                        <input type="tel" placeholder="Enter mobile number">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">10th Exam No.</label>
+                        <input type="text" placeholder="Enter 10th exam number">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">12th Roll No.</label>
+                        <input type="text" placeholder="Enter 12th roll number">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Address Section -->
+            <div class="form-section">
+                <h2 class="section-title">Address Details</h2>
+                
+                <div class="form-group">
+                    <label class="required">Address for Correspondence</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter correspondence address"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">District</label>
+                        <input type="text" placeholder="Enter district">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Taluk</label>
+                        <input type="text" placeholder="Enter taluk">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Pincode</label>
+                        <input type="text" placeholder="Enter pincode">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Permanent Address</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter permanent address"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">District</label>
+                        <input type="text" placeholder="Enter district">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Taluk</label>
+                        <input type="text" placeholder="Enter taluk">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Pincode</label>
+                        <input type="text" placeholder="Enter pincode">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bank Details Section -->
+            <div class="form-section">
+                <h2 class="section-title">Bank Details</h2>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Aadhaar Seeding Bank Name</label>
+                        <input type="text" placeholder="Enter bank name">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Aadhaar Seeding S.B. A/c No.</label>
+                        <input type="text" placeholder="Enter account number">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">IFSC Code No.</label>
+                        <input type="text" placeholder="Enter IFSC code">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">MICR Code No.</label>
+                        <input type="text" placeholder="Enter MICR code">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Branch Name</label>
+                        <input type="text" placeholder="Enter branch name">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Student Signature</label>
+                    <div class="signature-line"></div>
+                    <p class="note">(To be signed in presence of college authority)</p>
+                </div>
+            </div>
+            
+            <!-- Hostel Details Section -->
+            <div class="form-section">
+                <h2 class="section-title">Hostel Details</h2>
+                
+                <div class="form-group">
+                    <label class="required">Hosteller</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hostellerYes" name="hosteller">
+                            <label for="hostellerYes">Yes</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hostellerNo" name="hosteller">
+                            <label for="hostellerNo">No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label>If Yes</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="boys" name="hostelType">
+                                <label for="boys">Boys</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="girls" name="hostelType">
+                                <label for="girls">Girls</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <label>Hostel Name</label>
+                        <input type="text" placeholder="Enter hostel name">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label>Room No.</label>
+                        <input type="text" placeholder="Enter room number">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label>Date of Joining (For the Current Academic Year)</label>
+                        <input type="date">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Dy. Warden Signature With Seal</label>
+                    <div class="signature-line"></div>
+                </div>
+            </div>
+            
+            <!-- Mobile Numbers Section -->
+            <div class="form-section">
+                <h2 class="section-title">Contact Numbers</h2>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="required">Father's Mobile No.</label>
+                        <input type="tel" placeholder="Enter father's mobile number">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Mother's Mobile No.</label>
+                        <input type="tel" placeholder="Enter mother's mobile number">
+                    </div>
+                    
+                    <div class="form-col">
+                        <label class="required">Student's Mobile No.</label>
+                        <input type="tel" placeholder="Enter student's mobile number">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Documents Section -->
+            <div class="form-section">
+                <h2 class="section-title">Required Documents</h2>
+                <p>The following documents must be submitted along with the application:</p>
+                
+                <ol class="documents-list">
+                    <li>Income Certificate - Original + Photo copy (1 Copy)
+                        <div class="note">(Income Certificate obtained from the Tahsildhar on or after 01.04.2025)</div>
+                    </li>
+                    <li>Community Certificate - Photo copy (1 Copy)</li>
+                    <li>Attendance Certificate (Above 75%) - from the School / College last studied Institution (1 Copy)</li>
+                    <li>10th, 11th & 12th Mark Sheets - Photo copy (1 Copy)</li>
+                    <li>Last Year Two semesters Mark sheets - Photo copy (1 Copy) - II, III, IV Year Student Only</li>
+                    <li>Allotment Order - Photo copy (1 Copy) - Government Quota Students Only</li>
+                    <li>Nativity Certificate - Photo copy (1 Copy)</li>
+                    <li>Aadhar seeding S.B. A/C Pass Book (or) E-Statement - Photo copy (1 Copy)</li>
+                    <li>E-Aadhar Card - Photo copy (1 Copy)</li>
+                    <li>Last Years Scholarship Amount Credit Statement (1 Copy) - Renewal Student Only</li>
+                    <li>Current Year (2024-2025) College Fee Receipt & Hostel Fee Receipt (1 Copy)</li>
+                    <li>Parents declaration Form (1 Copy)</li>
+                    <li>Ration Card Old & New - Photo copy (1 Copy)</li>
+                    <li>Passport Size Photo - 2 Nos.</li>
+                    <li>Bank seeding Status With Aadhaar (1 Copy)</li>
+                </ol>
+            </div>
+            
+            <!-- Declaration Section -->
+            <div class="form-section">
+                <h2 class="section-title">Declaration</h2>
+                
+                <div class="declaration">
+                    <h3>Pragati Scholarship - Declaration by Parent's</h3>
+                    <p>(Please strike off whichever is not applicable)</p>
+                    
+                    <p>It is certified that the information filled in the application by my daughter namely Smt / Kumari 
+                    <input type="text" placeholder="Daughter's Name" style="width: 200px; display: inline;"> 
+                    who is admitted in 
+                    <input type="text" placeholder="Course Name" style="width: 200px; display: inline;"> 
+                    course (Branch's Name) for the current academic session in 
+                    <input type="text" placeholder="College Name" style="width: 200px; display: inline;"> 
+                    college. I further certify that I have Total 
+                    <input type="number" placeholder="No." style="width: 80px; display: inline;"> 
+                    number of daughter(s) and my First / second daughter, namely 
+                    <input type="text" placeholder="Daughter's Name" style="width: 200px; display: inline;"> 
+                    is making the current application to avail this facility.</p>
+                    
+                    <p>I undertake, that if at any stage, it is found that the information given by me or my daughter is false or if I or my daughter violate the terms and conditions of the Scholarship or any double payment is released to her, the Scholarship sanctioned to daughter, will be treated as cancelled and the entire amount of Scholarship will be refunded by me or recovered from me, apart from liability of penal action as warranted by law.</p>
+                    
+                    <div class="signature-area">
+                        <div class="signature-box">
+                            <div class="signature-line"></div>
+                            <p>Signature of Parent</p>
+                        </div>
+                        
+                        <div class="signature-box">
+                            <div class="signature-line"></div>
+                            <p>Name of the Parent</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row" style="margin-top: 20px;">
+                        <div class="form-col">
+                            <label>Date</label>
+                            <input type="date">
+                        </div>
+                        
+                        <div class="form-col">
+                            <label>Place</label>
+                            <input type="text" placeholder="Enter place">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Form Buttons -->
+            <div class="btn-container">
+                <button type="reset" class="btn btn-reset">Reset Form</button>
+                <button type="submit" class="btn btn-submit">Submit Application</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('scholarshipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted successfully! Please print this form and submit with required documents.');
+            // In a real application, you would send the form data to a server here
+        });
+        
+        // Make checkboxes mutually exclusive within groups
+        const checkboxGroups = document.querySelectorAll('.checkbox-group');
+        checkboxGroups.forEach(group => {
+            const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        checkboxes.forEach(cb => {
+                            if (cb !== checkbox) {
+                                cb.checked = false;
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

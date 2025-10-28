@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin Login - CertGenius</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="DT.html"><i class="fas fa-certificate me-2"></i>CertGenius Admin</a>
+    </div>
+  </nav>
+
+  <!-- Back to Home Button -->
+  <div class="container text-center mt-3">
+    <a href="DT.html" class="btn btn-outline-primary btn-sm">
+      <i class="fas fa-home me-1"></i> Back to Home
+    </a>
+  </div>
+
+  <!-- Login Form -->
+  <div class="container">
+    <div class="login-container mx-auto mt-4 p-4 bg-white rounded shadow">
+      <h3 class="mb-3">Admin Login</h3>
+      <form action="admin_login.php" method="POST">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input class="form-control" type="password" id="password" name="password" required>
+        </div>
+        <div class="d-grid">
+          <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+      </form>
+      <hr>
+      <p class="text-muted small">Use the create_admin.php to create initial admin if needed.</p>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
